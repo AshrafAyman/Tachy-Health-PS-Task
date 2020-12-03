@@ -8,37 +8,40 @@ namespace ConsoleApp6
 {
     class Program
     {
-        static string findSum(string str1, string str2)  
+        static string SumDigits(string num1, string num2)  
         {  
-            if (str1.Length > str2.Length){  
-                string t = str1; 
-                str1 = str2; 
-                str2 = t; 
+            if (num1.Length > num2.Length){  
+                string t = num1; 
+                num1 = num2; 
+                num2 = t; 
             } 
             string str = "";  
-            int n1 = str1.Length, n2 = str2.Length;  
-            char[] ch = str1.ToCharArray(); 
-            Array.Reverse( ch ); 
-            str1 = new string( ch ); 
-            char[] ch1 = str2.ToCharArray(); 
-            Array.Reverse( ch1 ); 
-            str2 = new string( ch1 ); 
+            int fNum = num1.Length, sNum = num2.Length;  
+
+            char[] arr1 = num1.ToCharArray(); 
+            Array.Reverse( arr1 ); 
+            num1 = new string( arr1 );
+            
+            char[] arr2 = num2.ToCharArray(); 
+            Array.Reverse( arr2 ); 
+            num2 = new string( arr2 ); 
           
             int carry = 0;  
-            for (int i = 0; i < n1; i++)  
+            for (int i = 0; i < fNum; i++)  
             {  
-                int sum = ((int)(str1[i] - '0') +  
-                        (int)(str2[i] - '0') + carry);  
+                int sum = ((int)(num1[i] - '0') +  
+                        (int)(num2[i] - '0') + carry);  
                 str += (char)(sum % 10 + '0');  
                 carry = sum/10;  
             }  
 
-            for (int i = n1; i < n2; i++)  
+            for (int i = fNum; i < sNum; i++)  
             {  
-                int sum = ((int)(str2[i] - '0') + carry);  
+                int sum = ((int)(num2[i] - '0') + carry);  
                 str += (char)(sum % 10 + '0');  
                 carry = sum/10;  
             }   
+
             if (carry > 0)  
                 str += (char)(carry + '0');  
             char[] ch2 = str.ToCharArray(); 
@@ -50,11 +53,11 @@ namespace ConsoleApp6
         static void Main(string[] args)
         {
             Console.WriteLine("Enter the first number");
-            string str1 = Console.ReadLine();  
+            string num1 = Console.ReadLine();  
             Console.WriteLine("Enter the second number");
-            string str2 = Console.ReadLine();
+            string num2 = Console.ReadLine();
 
-            Console.WriteLine(findSum(str1, str2));
+            Console.WriteLine(SumDigits(num1, num2));
             Console.ReadLine();
         }
 
